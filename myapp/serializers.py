@@ -6,4 +6,4 @@ from .models import OfficeModel
 class OfficeSerializer(ModelSerializer):
     class Meta:
         model = OfficeModel
-        fields = ('name', 'city')
+        fields = '__all__'
