@@ -13,8 +13,8 @@ from user.permissions import IsSuperUser
 
 
 class OfficeListCreateView(ListCreateAPIView):
-    authentication_classes = (BasicAuthentication,)
-    permission_classes = (IsSuperUser,)
+    authentication_classes = []
+    # permission_classes = (IsSuperUser,)
     serializer_class = OfficeSerializer
 
     def get_queryset(self):

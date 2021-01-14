@@ -1,10 +1,12 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, UpdateAPIView
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers import UserSerializer,UpToAdminSerializer
 from .permissions import IsSuperUser
+
+User = get_user_model()
 
 
 class UserListCreateView(ListCreateAPIView):
