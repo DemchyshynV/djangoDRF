@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-from datetime import timedelta
 from pathlib import Path
+from .config.rest_config import *
+from .config.jwt_config import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.conf import settings
@@ -42,9 +43,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # myApps:
+    'auth_app',
     'user',
-    'office',
-    'employee'
 ]
 
 MIDDLEWARE = [
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'djangoDRF.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'drf_test2',
+        'NAME': 'drf_angular',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -130,35 +130,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 APPEND_SLASH = False
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication',
-    )
-}
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=40),
-    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=2),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'UPDATE_LAST_LOGIN': False,
-
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': settings.SECRET_KEY,
-    'VERIFYING_KEY': None,
-    'AUDIENCE': None,
-    'ISSUER': None,
-
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-
-    'JTI_CLAIM': 'jti'
-}
 
 
